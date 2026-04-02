@@ -1,54 +1,45 @@
 # AgentOS — AI Agent Operating System
-### HackWithChicago 3.0 | Neo4j + RocketRide AI
+### HackWithChicago 3.0 | Neo4j + Groq AI
 
-## The Problem
-Microsoft's enterprise AI agents operate from different versions of reality and answer to nobody. One agent thinks "high risk" means one thing, another thinks something else. Agents can be hijacked, go rogue, and make dangerous decisions with zero accountability.
+## Setup in 5 minutes
 
-## What We Built
-A graph-powered operating system where every AI agent has an identity, shares ground truth definitions, follows graph-encoded rules, and is watched by other agents in real time.
+### 1. Get Neo4j Free (2 min)
+- Go to: https://aura.neo4j.io
+- Sign up → Create free instance
+- Copy: Connection URI, Username (neo4j), Password
 
-**4 Specialized Agents:**
-- **WorkerAgent** — Processes enterprise requests autonomously
-- **CheckerAgent** — Queries Neo4j before every action, enforces rules
-- **WatcherAgent** — Detects behavioral anomalies and drift
-- **ExplainerAgent** — Generates plain English audit reports
+### 2. Get Groq Free API Key (1 min)
+- Go to: https://console.groq.com
+- Sign up → API Keys → Create new key
+- Copy the key (starts with gsk_)
 
-**Neo4j Graph holds:**
-- Agent identities and relationships
-- Shared ground truth definitions
-- Ground rules as graph constraints
-- Full immutable audit trail
-
-## Setup
-
-### Backend
+### 3. Run Backend
 ```bash
 cd backend
 pip install -r requirements.txt
 cp .env.example .env
-# Fill in NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD, ANTHROPIC_API_KEY
+# Edit .env with your credentials
 python server.py
 ```
 
-### Frontend
+### 4. Run Frontend
 ```bash
 cd frontend
 npm install
 npm start
 ```
 
-## Demo Flow
-1. Click "Initialize AgentOS" — graph schema loads into Neo4j
-2. Go to Simulate → try Normal, Attack, and Escalation scenarios
-3. Watch all 4 agents respond in real time
-4. Check Audit Trail — every action permanently recorded
-5. Check Rules — ground truth encoded in graph
+### 5. Demo Flow
+1. Click "Initialize AgentOS" — loads Neo4j graph
+2. Simulate → Normal (approved), Attack (blocked), Escalation (CFO needed)
+3. Watch 4 agents respond in real time
+4. Check Audit Trail — every action in Neo4j
 
-## Tech Stack
-- **Neo4j Aura** — Graph database (agent relationships, rules, audit trail)
-- **RocketRide AI / Anthropic** — Powers all 4 agents
-- **Flask** — Backend API
-- **React** — Frontend UI
+## The Problem We Solve
+Microsoft's AI agents operate from different versions of reality and answer to nobody.
+AgentOS gives every agent an identity, shared ground truth, graph-encoded rules,
+and a society of agents watching each other in real time.
 
-## The Pitch
-*"Microsoft's own security team documented that their AI agents can be weaponized with no way to stop them. AgentOS is the graph that gives every agent an identity, every action a rule, and a society of agents that watch each other — so nothing happens in the dark."*
+## Pitch
+"Microsoft's own security team proved their agents can be weaponized.
+AgentOS is the operating system that makes AI agents safe enough to trust."
