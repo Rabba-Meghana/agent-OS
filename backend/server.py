@@ -6,6 +6,8 @@ import json
 import time
 import requests
 from datetime import datetime
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
