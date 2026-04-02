@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 
-const API = 'http://localhost:5000/api';
+const API = 'http://127.0.0.1:5000/api';
 const STATUS_COLORS = { APPROVED: '#22c55e', BLOCKED: '#ef4444', ESCALATED: '#f59e0b' };
 const AGENT_COLORS = { worker: '#6366f1', checker: '#0ea5e9', watcher: '#f59e0b', explainer: '#10b981' };
 const AGENT_ICONS = { worker: '⚙️', checker: '🔒', watcher: '👁️', explainer: '📋' };
