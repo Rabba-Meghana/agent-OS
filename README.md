@@ -1,45 +1,75 @@
 # AgentOS — AI Agent Operating System
-### HackWithChicago 3.0 | Neo4j + Groq AI
+### HackWithChicago 3.0 | Neo4j + Groq + RocketRide
 
-## Setup in 5 minutes
+AgentOS is a governance-first operating system for AI agents.  
+It enforces shared truth, identity, and real-time oversight across autonomous agents using a graph + pipeline architecture.
 
-### 1. Get Neo4j Free (2 min)
-- Go to: https://aura.neo4j.io
-- Sign up → Create free instance
-- Copy: Connection URI, Username (neo4j), Password
+---
 
-### 2. Get Groq Free API Key (1 min)
-- Go to: https://console.groq.com
-- Sign up → API Keys → Create new key
-- Copy the key (starts with gsk_)
+## Core Idea
 
-### 3. Run Backend
+Modern AI agents operate in isolation, without shared context or accountability.  
+AgentOS introduces:
+
+- Shared Ground Truth via Neo4j graph
+- Structured Agent Identity and Roles
+- Real-time Multi-Agent Oversight
+- Pipeline-based execution using RocketRide
+
+This transforms agents from isolated tools into a coordinated, governed system.
+
+---
+
+## Architecture
+
+Frontend → React dashboard (Command Center, Pipeline View, Audit)
+
+Backend → Python service layer  
+- Neo4j graph storage  
+- RocketRide pipeline execution  
+- Governance + audit logic  
+
+Execution Engine → RocketRide  
+- Multi-agent pipeline (.pipe)  
+- Worker, Checker, Watcher, Explainer  
+
+Database → Neo4j  
+- Rules  
+- Agent identities  
+- Audit trails  
+- Decision graph  
+
+---
+
+## Setup
+
+### 1. Neo4j (Required)
+
+Create a free instance:
+https://aura.neo4j.io
+
+Copy:
+- URI
+- Username
+- Password
+
+---
+
+### 2. Groq API Key
+
+Get a free key:
+https://console.groq.com
+
+---
+
+### 3. Backend Setup
+
 ```bash
 cd backend
+
+python3 -m venv venv
+source venv/bin/activate
+
 pip install -r requirements.txt
+
 cp .env.example .env
-# Edit .env with your credentials
-python server.py
-```
-
-### 4. Run Frontend
-```bash
-cd frontend
-npm install
-npm start
-```
-
-### 5. Demo Flow
-1. Click "Initialize AgentOS" — loads Neo4j graph
-2. Simulate → Normal (approved), Attack (blocked), Escalation (CFO needed)
-3. Watch 4 agents respond in real time
-4. Check Audit Trail — every action in Neo4j
-
-## The Problem We Solve
-Microsoft's AI agents operate from different versions of reality and answer to nobody.
-AgentOS gives every agent an identity, shared ground truth, graph-encoded rules,
-and a society of agents watching each other in real time.
-
-## Pitch
-"Microsoft's own security team proved their agents can be weaponized.
-AgentOS is the operating system that makes AI agents safe enough to trust."
