@@ -212,8 +212,8 @@ def audit():
 
 @app.route("/api/agents", methods=["GET"])
 def get_agents():
-    agents = run_query("MATCH (a:Agent) RETURN properties(a) as agent")
-    return jsonify({"agents": [r['agent'] for r in agents]})
+    agents = run_query("MATCH (a:Agent) RETURN a.id as id, a.name as name, a.type as type, a.status as status, a.risk_score as risk_score, a.powered_by as powered_by")
+    return jsonify({"agents": agents})
 
 @app.route("/api/rules", methods=["GET"])
 def get_rules():
