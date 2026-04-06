@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from neo4j import GraphDatabase
+from neo4j.exceptions import Neo4jError, ServiceUnavailable
 import asyncio
 import os
 import json
@@ -160,9 +161,22 @@ def setup():
         """MATCH (a:Agent {type:'worker'}), (r:Rule) CREATE (a)-[:GOVERNED_BY]->(r)""",
         """MATCH (a:Agent), (d:Definition) CREATE (a)-[:USES_DEFINITION]->(d)""",
     ]
-    for q in queries:
-        run_query(q)
-    return jsonify({"status": "Graph initialized", "message": "AgentOS is ready"})
+    try:
+        for q in queries:
+            run_query(q)
+        return jsonify({"status": "Graph initialized", "message": "AgentOS is ready"})
+    except ServiceUnavailable as exc:
+        return jsonify({
+            "status": "error",
+            "message": "Cannot connect to Neo4j. Verify NEO4J_URI, NEO4J_USER, and NEO4J_PASSWORD in backend/.env.",
+            "details": str(exc)
+        }), 503
+    except Neo4jError as exc:
+        return jsonify({
+            "status": "error",
+            "message": "Neo4j returned an error while initializing the graph.",
+            "details": str(exc)
+        }), 500
 
 @app.route("/api/graph", methods=["GET"])
 def get_graph():

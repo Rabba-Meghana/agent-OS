@@ -27,7 +27,18 @@ export default function App() {
     setInitLoading(true);
     addLog('Initializing AgentOS graph...', 'info');
     try {
-      await fetch(`${API}/setup`, { method: 'POST' });
+      const res = await fetch(`${API}/setup`, { method: 'POST' });
+      if (!res.ok) {
+        let details = `HTTP ${res.status}`;
+        try {
+          const payload = await res.json();
+          details = payload.message || payload.details || details;
+        } catch (_) {
+          const text = await res.text();
+          details = text || details;
+        }
+        throw new Error(details);
+      }
       addLog('Neo4j graph schema created', 'success');
       addLog('4 agents deployed: Worker, Checker, Watcher, Explainer', 'success');
       addLog('Ground rules encoded into graph', 'success');
@@ -35,7 +46,9 @@ export default function App() {
       addLog('AgentOS is LIVE', 'success');
       setInitialized(true);
       fetchData();
-    } catch (e) { addLog('Error — check backend connection', 'error'); }
+    } catch (e) {
+      addLog(`Initialize failed: ${e.message || 'check backend connection'}`, 'error');
+    }
     setInitLoading(false);
   };
 
