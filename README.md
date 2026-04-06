@@ -123,4 +123,4 @@ AgentOS is the operating system that makes AI agents safe enough to trust."
 
 ### Conclusion
 
-## AgentOS demonstrates a practical, graph-governed multi-agent system where every action is checked against shared rules, monitored for anomalies, and fully auditable, making autonomous AI behavior safer, explainable, and enterprise-ready.
+- AgentOS demonstrates a practical, graph-governed multi-agent system where every action is checked against shared rules, monitored for anomalies, and fully auditable, making autonomous AI behavior safer, explainable, and enterprise-ready.
