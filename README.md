@@ -1,4 +1,4 @@
-# AgentOS — AI Agent Operating System
+# AgentOS - AI Agent Operating System
 ### HackWithChicago 3.0 | Neo4j + Groq AI
 
 ## Setup in 5 minutes
